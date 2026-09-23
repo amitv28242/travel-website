@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
-import PasswordInput from "../components/PasswordInput.jsx";
+import PasswordInput from "../components/PasswordInput";
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -38,8 +38,11 @@ export default function Login() {
 
         <div>
           <label className="label">Email</label>
-          <input type="email" className="input"
-            {...register("email", { required: "Email is required" })} />
+          <input
+            type="email"
+            className="input"
+            {...register("email", { required: "Email is required" })}
+          />
           {errors.email && <p className="error">{errors.email.message}</p>}
         </div>
 
@@ -48,8 +51,7 @@ export default function Login() {
           <PasswordInput
             register={register("password", { required: "Password is required" })}
             error={errors.password}
-            placeholder="Enter your password"
-            autoComplete="current-password"
+            placeholder="Enter password"
           />
         </div>
 
@@ -59,7 +61,9 @@ export default function Login() {
 
         <p className="text-center text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link to="/register" className="text-primary font-medium hover:underline">Sign up</Link>
+          <Link to="/register" className="text-primary font-medium hover:underline">
+            Sign up
+          </Link>
         </p>
       </form>
     </div>

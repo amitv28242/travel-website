@@ -1,0 +1,216 @@
+/* =========================================================
+   Destination Section (Home page)
+   ========================================================= */
+.destination-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 100px 7% 80px;
+  background: #fff;
+}
+
+/* ---------- Heading ---------- */
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.section-label {
+  color: #0ea5e9;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin: 0 0 18px;
+}
+
+.section-heading h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #102f45;
+  margin: 0 0 20px;
+}
+
+.section-heading h2 span {
+  color: #0ea5e9;
+}
+
+.section-description {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* =========================================================
+   Grid
+   ========================================================= */
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* =========================================================
+   Card
+   ========================================================= */
+.destination-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 22px rgba(16, 47, 69, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.destination-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(16, 47, 69, 0.18);
+}
+
+/* Image */
+.destination-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Gradient overlay */
+.destination-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 47, 69, 0) 0%,
+    rgba(16, 47, 69, 0.15) 40%,
+    rgba(16, 47, 69, 0.75) 80%,
+    rgba(16, 47, 69, 0.95) 100%
+  );
+  z-index: 1;
+  transition: opacity 0.35s ease;
+}
+
+.destination-card:hover::after {
+  opacity: 0.95;
+}
+
+/* ---------- Overlay content ---------- */
+.destination-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transform: translateY(0);
+  transition: transform 0.35s ease;
+}
+
+.destination-card:hover .destination-overlay {
+  transform: translateY(-4px);
+}
+
+.destination-overlay > div > p {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e2b96f;
+  margin: 0 0 6px;
+}
+
+.destination-overlay > div > h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+}
+
+/* Explore button */
+.destination-overlay button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.destination-overlay button:hover {
+  background: #0ea5e9;
+  border-color: #0ea5e9;
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 1024px) {
+  .destination-section {
+    padding: 80px 6% 65px;
+  }
+
+  .destination-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .destination-section {
+    padding: 60px 6% 50px;
+  }
+
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+  .destination-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .destination-card {
+    aspect-ratio: 4 / 5;
+  }
+
+  .destination-overlay {
+    padding: 22px 20px;
+  }
+
+  .destination-overlay > div > h3 {
+    font-size: 20px;
+  }
+
+  .destination-overlay button {
+    width: 100%;
+    justify-content: center;
+  }
+}

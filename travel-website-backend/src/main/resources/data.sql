@@ -10,6 +10,108 @@ USE travel_db;
 SHOW TABLES;
 DESCRIBE travel_packages;
 
+CREATE DATABASE IF NOT EXISTS travel_db
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE travel_db;
+
+CREATE TABLE users (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  phone VARCHAR(20) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('USER','ADMIN') NOT NULL DEFAULT 'USER',
+  status ENUM('ACTIVE','DISABLED') NOT NULL DEFAULT 'ACTIVE',
+  created_at DATETIME,
+  updated_at DATETIME,
+  INDEX idx_user_email (email)
+) ENGINE=InnoDB;
+
+CREATE TABLE destinations (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  country VARCHAR(255) NOT NULL,
+  description TEXT,
+  estimated_cost DECIMAL(12,2),
+  best_time_to_visit VARCHAR(255),
+  image_url VARCHAR(500),
+  popular_activities VARCHAR(1000),
+  created_at DATETIME,
+  updated_at DATETIME
+) ENGINE=InnoDB;
+
+CREATE TABLE travel_packages (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  destination_id BIGINT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  price DECIMAL(12,2) NOT NULL,
+  duration INT NOT NULL,
+  max_travellers INT NOT NULL,
+  rating DOUBLE DEFAULT 0,
+  image_url VARCHAR(500),
+  inclusions VARCHAR(2000),
+  exclusions VARCHAR(2000),
+  terms_and_conditions VARCHAR(3000),
+  created_at DATETIME,
+  updated_at DATETIME,
+  FOREIGN KEY (destination_id) REFERENCES destinations(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE package_itineraries (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  package_id BIGINT NOT NULL,
+  day_number INT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description VARCHAR(2000),
+  FOREIGN KEY (package_id) REFERENCES travel_packages(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE bookings (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  booking_reference VARCHAR(50) NOT NULL UNIQUE,
+  user_id BIGINT NOT NULL,
+  package_id BIGINT NOT NULL,
+  travel_date DATE NOT NULL,
+  number_of_travellers INT NOT NULL,
+  total_amount DECIMAL(12,2) NOT NULL,
+  status ENUM('PENDING','CONFIRMED','CANCELLED','COMPLETED') NOT NULL DEFAULT 'PENDING',
+  cancellation_reason VARCHAR(500),
+  cancelled_at DATETIME,
+  created_at DATETIME,
+  updated_at DATETIME,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (package_id) REFERENCES travel_packages(id),
+  INDEX idx_booking_ref (booking_reference)
+) ENGINE=InnoDB;
+
+CREATE TABLE traveller_details (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  booking_id BIGINT NOT NULL,
+  full_name VARCHAR(255) NOT NULL,
+  age INT,
+  gender VARCHAR(20),
+  phone VARCHAR(20),
+  email VARCHAR(255),
+  id_number VARCHAR(100),
+  FOREIGN KEY (booking_id) REFERENCES bookings(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE reviews (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  user_id BIGINT NOT NULL,
+  package_id BIGINT,
+  destination_id BIGINT,
+  rating INT NOT NULL,
+  comment VARCHAR(2000),
+  status ENUM('PENDING','APPROVED','HIDDEN') DEFAULT 'PENDING',
+  created_at DATETIME,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (package_id) REFERENCES travel_packages(id) ON DELETE CASCADE,
+  FOREIGN KEY (destination_id) REFERENCES destinations(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 -- =============================================
 -- DESTINATIONS
 -- =============================================

@@ -24,7 +24,9 @@ export default function PackageCard({ pkg }) {
           📍 {pkg.destinationName}
           {pkg.destinationCountry ? `, ${pkg.destinationCountry}` : ""}
         </p>
-        <p className="text-sm text-gray-600 mt-2 line-clamp-2 flex-1">{pkg.description}</p>
+        <p className="text-sm text-gray-600 mt-2 line-clamp-2 flex-1">
+          {pkg.description}
+        </p>
         <div className="flex items-center justify-between mt-4 pt-3 border-t gap-2">
           <div>
             <p className="text-xs text-gray-500">{pkg.duration} days</p>

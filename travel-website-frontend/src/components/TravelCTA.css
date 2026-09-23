@@ -1,0 +1,144 @@
+/* =========================================================
+   Travel CTA Banner
+   ========================================================= */
+.travel-cta {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+  margin: 60px 0;
+}
+
+.travel-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 47, 69, 0.85) 0%,
+    rgba(16, 47, 69, 0.7) 50%,
+    rgba(14, 165, 233, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+.travel-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 70px 24px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.travel-cta-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #e2b96f;
+  margin: 0 0 20px;
+}
+
+.travel-cta-content h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+  margin: 0 0 22px;
+}
+
+.travel-cta-content h2 span {
+  color: #e2b96f;
+}
+
+.travel-cta-content > p:not(.travel-cta-label) {
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 620px;
+  margin: 0 0 36px;
+}
+
+/* ---------- Buttons ---------- */
+.travel-cta-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-primary,
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+  min-width: 170px;
+}
+
+.cta-primary {
+  background: #0ea5e9;
+  color: #fff;
+  border-color: #0ea5e9;
+}
+
+.cta-primary:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.35);
+}
+
+.cta-secondary {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.cta-secondary:hover {
+  background: #fff;
+  color: #102f45;
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 640px) {
+  .travel-cta {
+    min-height: 400px;
+    background-attachment: scroll;
+    margin: 40px 0;
+  }
+
+  .travel-cta-content {
+    padding: 60px 20px;
+  }
+
+  .travel-cta-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+  }
+}

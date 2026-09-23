@@ -19,10 +19,12 @@ export default function Dashboard() {
     Promise.all([
       api.get("/bookings"),
       api.get("/users/profile"),
-    ]).then(([bRes, pRes]) => {
-      setBookings(bRes.data.data || []);
-      setProfile({ name: pRes.data.data.name, phone: pRes.data.data.phone });
-    }).finally(() => setLoading(false));
+    ])
+      .then(([bRes, pRes]) => {
+        setBookings(bRes.data.data || []);
+        setProfile({ name: pRes.data.data.name, phone: pRes.data.data.phone });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const cancelBooking = async (b) => {
@@ -30,7 +32,9 @@ export default function Dashboard() {
     try {
       await api.put(`/bookings/${b.id}/cancel`);
       toast.success("Booking cancelled");
-      setBookings((prev) => prev.map((x) => x.id === b.id ? { ...x, status: "CANCELLED" } : x));
+      setBookings((prev) =>
+        prev.map((x) => (x.id === b.id ? { ...x, status: "CANCELLED" } : x))
+      );
     } catch (e) {
       toast.error(e.response?.data?.message || "Cancel failed");
     }
@@ -59,8 +63,12 @@ export default function Dashboard() {
       </div>
 
       <div className="flex gap-2 border-b mb-6 overflow-x-auto">
-        <TabBtn active={tab === "bookings"} onClick={() => setTab("bookings")}>My Bookings</TabBtn>
-        <TabBtn active={tab === "profile"} onClick={() => setTab("profile")}>Profile</TabBtn>
+        <TabBtn active={tab === "bookings"} onClick={() => setTab("bookings")}>
+          My Bookings
+        </TabBtn>
+        <TabBtn active={tab === "profile"} onClick={() => setTab("profile")}>
+          Profile
+        </TabBtn>
       </div>
 
       {tab === "bookings" && (
@@ -110,13 +118,19 @@ export default function Dashboard() {
         <form onSubmit={saveProfile} className="card p-6 max-w-lg space-y-4">
           <div>
             <label className="label">Full Name</label>
-            <input className="input" value={profile.name}
-              onChange={(e) => setProfile({ ...profile, name: e.target.value })} />
+            <input
+              className="input"
+              value={profile.name}
+              onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+            />
           </div>
           <div>
             <label className="label">Phone</label>
-            <input className="input" value={profile.phone}
-              onChange={(e) => setProfile({ ...profile, phone: e.target.value })} />
+            <input
+              className="input"
+              value={profile.phone}
+              onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+            />
           </div>
           <div>
             <label className="label">Email</label>

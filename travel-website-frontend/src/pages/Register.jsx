@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
-import PasswordInput from "../components/PasswordInput.jsx";
+import PasswordInput from "../components/PasswordInput";
 
 export default function Register() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -30,7 +30,7 @@ export default function Register() {
       <form onSubmit={handleSubmit(onSubmit)} className="card p-8 w-full max-w-md space-y-4">
         <div className="text-center">
           <h2 className="text-2xl font-bold">Create Account</h2>
-          <p className="text-sm text-gray-500 mt-1">Join TravelGo in seconds</p>
+          <p className="text-sm text-gray-500 mt-1">Join Sharvesh Tours in seconds</p>
         </div>
 
         <div>
@@ -64,7 +64,7 @@ export default function Register() {
               minLength: { value: 8, message: "At least 8 characters" },
             })}
             error={errors.password}
-            placeholder="Create a password"
+            placeholder="Enter password"
             autoComplete="new-password"
           />
         </div>
@@ -77,7 +77,7 @@ export default function Register() {
               validate: (v) => v === password || "Passwords do not match",
             })}
             error={errors.confirmPassword}
-            placeholder="Re-enter your password"
+            placeholder="Confirm password"
             autoComplete="new-password"
           />
         </div>
@@ -88,7 +88,9 @@ export default function Register() {
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link to="/login" className="text-primary font-medium hover:underline">Login</Link>
+          <Link to="/login" className="text-primary font-medium hover:underline">
+            Login
+          </Link>
         </p>
       </form>
     </div>

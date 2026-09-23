@@ -18,7 +18,9 @@ export default class ErrorBoundary extends Component {
     if (this.state.error) {
       return (
         <div className="container-page py-16 text-center">
-          <h1 className="text-2xl font-bold text-red-600 mb-2">Something went wrong</h1>
+          <h1 className="text-2xl font-bold text-red-600 mb-2">
+            Something went wrong
+          </h1>
           <pre className="text-xs text-gray-600 bg-gray-100 p-4 rounded mt-4 overflow-auto text-left max-w-2xl mx-auto">
             {this.state.error.message}
           </pre>

@@ -9,18 +9,28 @@ export default function BookNowModal({ pkg, onClose }) {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
 
-  const { register, handleSubmit, control, watch, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       travelDate: "",
       numberOfTravellers: 1,
       travellers: [{}],
     },
   });
+
   const { fields, replace } = useFieldArray({ control, name: "travellers" });
   const numTravellers = watch("numberOfTravellers");
 
   useEffect(() => {
-    const count = Math.min(Math.max(Number(numTravellers) || 1, 1), pkg.maxTravellers || 10);
+    const count = Math.min(
+      Math.max(Number(numTravellers) || 1, 1),
+      pkg.maxTravellers || 10
+    );
     replace(Array.from({ length: count }).map(() => ({})));
   }, [numTravellers, pkg, replace]);
 
@@ -57,7 +67,6 @@ export default function BookNowModal({ pkg, onClose }) {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white rounded-2xl w-full max-w-2xl my-6 shadow-2xl"
       >
-        {/* Header */}
         <div className="flex items-start justify-between p-5 border-b">
           <div>
             <h2 className="text-lg font-bold">Book: {pkg.name}</h2>
@@ -78,7 +87,6 @@ export default function BookNowModal({ pkg, onClose }) {
           </button>
         </div>
 
-        {/* Body */}
         <div className="p-5 space-y-5 max-h-[70vh] overflow-y-auto">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
@@ -114,63 +122,36 @@ export default function BookNowModal({ pkg, onClose }) {
               <div key={f.id} className="bg-gray-50 p-3 rounded-lg space-y-2">
                 <p className="text-xs font-medium text-gray-600">Traveller {i + 1}</p>
                 <div className="grid md:grid-cols-2 gap-2">
-                  <input
-                    placeholder="Full name"
-                    className="input"
-                    {...register(`travellers.${i}.fullName`, { required: "Required" })}
-                  />
-                  <input
-                    type="number"
-                    placeholder="Age"
-                    min={0}
-                    max={120}
-                    className="input"
-                    {...register(`travellers.${i}.age`, {
-                      required: "Required",
-                      valueAsNumber: true,
-                    })}
-                  />
-                  <select
-                    className="input"
-                    {...register(`travellers.${i}.gender`, { required: "Required" })}
-                  >
+                  <input placeholder="Full name" className="input"
+                    {...register(`travellers.${i}.fullName`, { required: "Required" })} />
+                  <input type="number" placeholder="Age" min={0} max={120} className="input"
+                    {...register(`travellers.${i}.age`, { required: "Required", valueAsNumber: true })} />
+                  <select className="input"
+                    {...register(`travellers.${i}.gender`, { required: "Required" })}>
                     <option value="">Gender</option>
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
                   </select>
-                  <input
-                    placeholder="Phone"
-                    className="input"
-                    {...register(`travellers.${i}.phone`, { required: "Required" })}
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="input"
-                    {...register(`travellers.${i}.email`, { required: "Required" })}
-                  />
-                  <input
-                    placeholder="ID / Passport (optional)"
-                    className="input"
-                    {...register(`travellers.${i}.idNumber`)}
-                  />
+                  <input placeholder="Phone" className="input"
+                    {...register(`travellers.${i}.phone`, { required: "Required" })} />
+                  <input type="email" placeholder="Email" className="input"
+                    {...register(`travellers.${i}.email`, { required: "Required" })} />
+                  <input placeholder="ID / Passport (optional)" className="input"
+                    {...register(`travellers.${i}.idNumber`)} />
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Footer */}
         <div className="flex items-center justify-between p-5 border-t bg-gray-50 rounded-b-2xl flex-wrap gap-3">
           <div>
             <p className="text-xs text-gray-500">Total Amount</p>
             <p className="text-2xl font-bold text-primary">{formatCurrency(total)}</p>
           </div>
           <div className="flex gap-2">
-            <button type="button" onClick={onClose} className="btn-outline">
-              Cancel
-            </button>
+            <button type="button" onClick={onClose} className="btn-outline">Cancel</button>
             <button type="submit" disabled={submitting} className="btn-primary">
               {submitting ? "Booking..." : "Confirm Booking"}
             </button>

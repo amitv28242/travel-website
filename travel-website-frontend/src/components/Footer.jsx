@@ -1,54 +1,59 @@
 import { Link } from "react-router-dom";
+import "./Footer.css";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-slate-900 text-slate-300 mt-16">
-      <div className="container-page py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 className="text-white text-xl font-bold mb-3">✈ TravelGo</h3>
-          <p className="text-sm leading-relaxed">
-            Discover handpicked destinations and unforgettable tour packages —
-            book with confidence, travel with joy.
+    <footer className="footer">
+      <div className="footer-main">
+        <div className="footer-brand">
+          <Link to="/" className="footer-logo">
+            <span>SHARVESH</span>
+            <small>TOURS &amp; TRAVELS</small>
+          </Link>
+
+          <p>
+            Discover new destinations, experience different cultures, and
+            create memories that last a lifetime.
           </p>
+
+          <div className="social-links">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">◎</a>
+            <a href="#" aria-label="WhatsApp">W</a>
+          </div>
         </div>
 
-        <div>
-          <h4 className="text-white font-semibold mb-3">Quick Links</h4>
-          <ul className="space-y-2 text-sm">
-            <li><Link to="/" className="hover:text-white">Home</Link></li>
-            <li><Link to="/destinations" className="hover:text-white">Destinations</Link></li>
-            <li><Link to="/packages" className="hover:text-white">Packages</Link></li>
-            <li><Link to="/dashboard" className="hover:text-white">My Bookings</Link></li>
-          </ul>
+        <div className="footer-column">
+          <h3>Quick Links</h3>
+          <Link to="/">Home</Link>
+          <Link to="/destinations">Destinations</Link>
+          <Link to="/packages">Packages</Link>
+          <Link to="/dashboard">My Bookings</Link>
         </div>
 
-        <div>
-          <h4 className="text-white font-semibold mb-3">Popular</h4>
-          <ul className="space-y-2 text-sm">
-            <li><Link to="/destinations?q=Goa" className="hover:text-white">Goa</Link></li>
-            <li><Link to="/destinations?q=Manali" className="hover:text-white">Manali</Link></li>
-            <li><Link to="/destinations?q=Kerala" className="hover:text-white">Kerala</Link></li>
-            <li><Link to="/destinations?q=Rajasthan" className="hover:text-white">Rajasthan</Link></li>
-          </ul>
+        <div className="footer-column">
+          <h3>Travel</h3>
+          <Link to="/packages">Tour Packages</Link>
+          <Link to="/destinations">Popular Destinations</Link>
+          <Link to="/packages">Book a Trip</Link>
+          <Link to="/dashboard">My Bookings</Link>
         </div>
 
-        <div>
-          <h4 className="text-white font-semibold mb-3">Contact</h4>
-          <ul className="space-y-2 text-sm">
-            <li>📧 support@travelgo.example</li>
-            <li>📞 +91 98765 43210</li>
-            <li>📍 Mumbai, India</li>
-            <li className="flex gap-3 pt-2">
-              <a href="#" className="hover:text-white" aria-label="Facebook">FB</a>
-              <a href="#" className="hover:text-white" aria-label="Instagram">IG</a>
-              <a href="#" className="hover:text-white" aria-label="Twitter">TW</a>
-            </li>
-          </ul>
+        <div className="footer-column footer-contact">
+          <h3>Get In Touch</h3>
+          <p>📍 New Delhi, India</p>
+          <p>📞 +91 98765 43210</p>
+          <p>✉️ info@sharveshtours.com</p>
         </div>
       </div>
-      <div className="border-t border-slate-800">
-        <div className="container-page py-4 text-center text-xs text-slate-500">
-          © {new Date().getFullYear()} TravelGo. All rights reserved.
+
+      <div className="footer-bottom">
+        <p>© {year} Sharvesh Tours &amp; Travels. All rights reserved. (Amit Verma)</p>
+        <div>
+          <Link to="/">Privacy Policy</Link>
+          <Link to="/">Terms &amp; Conditions</Link>
         </div>
       </div>
     </footer>

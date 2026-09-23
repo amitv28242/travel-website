@@ -1,0 +1,45 @@
+.package-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.package-actions .details-btn,
+.package-actions .book-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.package-actions .details-btn {
+  background: transparent;
+  color: #0369a1;
+  border-color: #cbd5e1;
+}
+
+.package-actions .details-btn:hover {
+  background: #f0f9ff;
+  border-color: #0ea5e9;
+}
+
+.package-actions .book-btn {
+  background: #0ea5e9;
+  color: #fff;
+  border-color: #0ea5e9;
+}
+
+.package-actions .book-btn:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+}
+
+.view-all-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}

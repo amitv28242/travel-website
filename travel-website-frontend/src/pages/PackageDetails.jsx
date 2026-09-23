@@ -16,24 +16,27 @@ export default function PackageDetails() {
 
   useEffect(() => {
     setLoading(true);
-    Promise.all([
+    Promise.allSettled([
       api.get(`/packages/${id}`),
       api.get("/reviews", { params: { packageId: id, status: "APPROVED", size: 6 } }),
     ])
       .then(([pRes, rRes]) => {
-        setPkg(pRes.data.data);
-        setReviews(rRes.data.data.content || []);
+        if (pRes.status === "fulfilled") setPkg(pRes.value.data.data);
+        else setError("Package not found");
+        if (rRes.status === "fulfilled") setReviews(rRes.value.data.data.content || []);
       })
-      .catch((e) => setError(e.response?.data?.message || "Failed to load"))
       .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <div className="container-page py-10"><ErrorMessage message={error} /></div>;
-  if (!pkg) return null;
+  if (error || !pkg)
+    return (
+      <div className="container-page py-10">
+        <ErrorMessage message={error || "Not found"} />
+      </div>
+    );
 
-  const list = (str) =>
-    (str || "").split(",").map((s) => s.trim()).filter(Boolean);
+  const list = (str) => (str || "").split(",").map((s) => s.trim()).filter(Boolean);
 
   return (
     <div>
@@ -106,7 +109,7 @@ export default function PackageDetails() {
 
           {pkg.termsAndConditions && (
             <section>
-              <h2 className="text-2xl font-bold mb-3">Terms & Conditions</h2>
+              <h2 className="text-2xl font-bold mb-3">Terms &amp; Conditions</h2>
               <p className="text-sm text-gray-600 whitespace-pre-line">
                 {pkg.termsAndConditions}
               </p>
@@ -150,7 +153,13 @@ export default function PackageDetails() {
               </div>
             </div>
 
-            <BookNowButton pkg={pkg} className="btn-primary w-full mt-5" />
+            <div className="mt-5">
+              <BookNowButton
+                pkg={pkg}
+                className="btn-primary w-full"
+                label="Book Now"
+              />
+            </div>
 
             <Link
               to={`/destinations/${pkg.destinationId}`}

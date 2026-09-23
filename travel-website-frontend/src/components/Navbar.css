@@ -1,0 +1,217 @@
+/* =========================================================
+   Navbar
+   ========================================================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.logo span {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #0369a1;
+}
+
+.logo small {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: #6b7280;
+  margin-top: 3px;
+}
+
+/* ---------- Desktop links ---------- */
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links a {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover {
+  background: #f3f4f6;
+  color: #0369a1;
+}
+
+.nav-links a.active {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+/* ---------- Auth block (desktop) ---------- */
+.nav-auth {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #0ea5e9;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.nav-username {
+  font-size: 0.85rem;
+  color: #374151;
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Buttons ---------- */
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.2s ease;
+  background: #0ea5e9;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.nav-button:hover {
+  background: #0369a1;
+}
+
+.nav-button.secondary {
+  background: transparent;
+  color: #0369a1;
+  border-color: #cbd5e1;
+}
+
+.nav-button.secondary:hover {
+  background: #f0f9ff;
+  border-color: #0ea5e9;
+  color: #0369a1;
+}
+
+/* ---------- Hamburger ---------- */
+.nav-toggle {
+  display: flex;
+  padding: 8px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #374151;
+}
+
+.nav-toggle:hover {
+  background: #f3f4f6;
+}
+
+/* ---------- Mobile menu ---------- */
+.nav-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 20px 16px;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.nav-mobile a {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-mobile a:hover {
+  background: #f3f4f6;
+  color: #0369a1;
+}
+
+.nav-mobile a.active {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.nav-mobile-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 8px 0;
+}
+
+.nav-mobile .nav-button {
+  width: 100%;
+  padding: 11px 16px;
+  margin-top: 4px;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (min-width: 768px) {
+  .nav-links,
+  .nav-auth {
+    display: flex;
+  }
+
+  .nav-toggle,
+  .nav-mobile {
+    display: none;
+  }
+}

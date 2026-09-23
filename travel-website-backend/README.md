@@ -29,25 +29,25 @@ traveller details, reviews with moderation, and a full admin panel.
 17. [License](#-license)
 
 ---
-
 ## ✨ Features
 
 - 🔐 **JWT Authentication** — stateless login/register with BCrypt password hashing
 - 👥 **Role-based Access Control** — `USER` and `ADMIN` roles
-- 🌍 **Destinations CRUD** — with search, sorting, and pagination
+- 🌍 **Destinations CRUD** — search, sorting, pagination
 - 📦 **Travel Packages** — filters by destination, price range, duration, rating; day-wise itineraries
 - 📅 **Booking System** — multi-traveller bookings with unique reference codes
 - ❌ **Booking Cancellation** — user-driven (48h policy) and admin override
-- ⭐ **Reviews & Ratings** — user submissions with admin moderation (PENDING/APPROVED/HIDDEN)
+- ⭐ **Reviews & Ratings** — user submissions with admin moderation (PENDING / APPROVED / HIDDEN)
 - 📊 **Admin Dashboard** — aggregate stats (users, bookings, revenue, reviews)
-- 🛠 **Admin Panel APIs** — user management, booking management, review moderation
-- 🧪 **Validation** — Bean Validation on all request DTOs
+- 🛠 **Admin Panel APIs** — user, booking, and review management
+- 🧪 **Bean Validation** — on every request DTO
 - ⚠️ **Global Exception Handling** — consistent JSON error responses
 - 📖 **Swagger / OpenAPI 3** — interactive API docs
 - 🧱 **Layered Architecture** — controller → service → repository → entity
 - 🔄 **DTO + Mapper pattern** — no JPA entities leak to the API
 - 🚫 **No plaintext passwords** — BCrypt everywhere
 - 🌐 **CORS** — configurable allowed origins
+- 🧾 **Structured logging** — SLF4J via Spring Boot
 
 ---
 
@@ -120,42 +120,50 @@ travel-website-backend/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/travel-website-backend.git
+git clone https://github.com/amitv28242/travel-website.git/travel-website-backend.git
 cd travel-website-backend
 
 2. Verify prerequisites
 
+```bash
 java -version     # must print 21 or higher
 mvn -v            # must print 3.9+
 mysql --version   # must print 8.x
 
 3. Create the database (or let Hibernate do it)
 
+```bash
 mysql -u root -p -e "CREATE DATABASE travel_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
 
 4. Configure environment variables
 
+```bash
 cp .env.example .env
 # Edit .env with your MySQL credentials + a strong JWT secret
 5. Build the project
 
+```bash
 mvn clean install -DskipTests
 
 6. Run
 
+```bash
 mvn spring-boot:run
 The API will start on http://localhost:8080
 
-Running the Application
 
-Development mode
+Build a jar and run it
+▶️ Running the Application
+Development
 
+```bash
 mvn spring-boot:run
 
 
-Build a jar and run it
+Packaged jar
 
+```bash
 mvn clean package -DskipTests
 java -jar target/travel-website-backend-1.0.0.jar
 
@@ -166,11 +174,13 @@ Authentication
 Method	Endpoint	Access	Description
 POST	/auth/register	Public	Register a new user
 POST	/auth/login	Public	Login and receive a JWT
+
 User Profile
 Method	Endpoint	Access	Description
 GET	/users/profile	USER	Get current profile
 PUT	/users/profile	USER	Update name & phone
 PUT	/users/change-password	USER	Change password
+
 Destinations
 Method	Endpoint	Access	Description
 GET	/destinations	Public	Paginated list (?q=&sort=&page=&size=)
@@ -178,6 +188,7 @@ GET	/destinations/{id}	Public	Single destination
 POST	/destinations	ADMIN	Create
 PUT	/destinations/{id}	ADMIN	Update
 DELETE	/destinations/{id}	ADMIN	Delete
+
 Packages
 Method	Endpoint	Access	Description
 GET	/packages	Public	Filters: destination, minPrice, maxPrice, duration, minRating, sort, page, size
@@ -185,18 +196,21 @@ GET	/packages/{id}	Public	Single package with itineraries
 POST	/packages	ADMIN	Create (with itineraries)
 PUT	/packages/{id}	ADMIN	Update (with itineraries)
 DELETE	/packages/{id}	ADMIN	Delete
+
 Bookings (User)
 Method	Endpoint	Access	Description
 POST	/bookings	USER	Create booking with traveller details
 GET	/bookings	USER	List current user's bookings
 GET	/bookings/{id}	USER	Booking detail
 PUT	/bookings/{id}/cancel	USER	Cancel (48h before travel)
+
 Reviews
 Method	Endpoint	Access	Description
 GET	/reviews	Public	Filters: packageId, destinationId, status, page, size
 POST	/reviews	USER	Submit review (goes to PENDING)
 PUT	/reviews/{id}/moderate?status=	ADMIN	Approve / Hide
 DELETE	/reviews/{id}	ADMIN	Delete
+
 Admin
 Method	Endpoint	Access	Description
 GET	/admin/stats	ADMIN	Dashboard aggregates
@@ -208,6 +222,8 @@ GET	/admin/bookings	ADMIN	Search/filter bookings
 GET	/admin/bookings/{id}	ADMIN	Booking detail
 PUT	/admin/bookings/{id}/status?status=	ADMIN	Update booking status
 PUT	/admin/bookings/{id}/cancel?reason=	ADMIN	Admin cancel
+
+
 📖 API Documentation (Swagger)
 Once the app is running, open:
 

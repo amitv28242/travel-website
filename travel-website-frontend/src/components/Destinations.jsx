@@ -5,32 +5,24 @@ import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import LoadingSpinner from "../components/LoadingSpinner";
 import EmptyState from "../components/EmptyState";
-import { getPage } from "../utils/response";
 import "./Destinations.css";
 
 export default function Destinations() {
   const [params, setParams] = useSearchParams();
-  const [page, setPage] = useState({ content: [], totalPages: 0 });
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const q = params.get("q") || "";
   const sort = params.get("sort") || "name";
-  const pageNum = Number(params.get("page") || 0);
+  const page = Number(params.get("page") || 0);
 
   useEffect(() => {
     setLoading(true);
-    setError(null);
     api
-      .get("/destinations", { params: { q: q || undefined, sort, page: pageNum, size: 9 } })
-      .then((r) => setPage(getPage(r)))
-      .catch((e) => {
-        console.warn("Destinations fetch failed:", e?.message);
-        setPage({ content: [], totalPages: 0 });
-        setError("Failed to load destinations");
-      })
+      .get("/destinations", { params: { q: q || undefined, sort, page, size: 9 } })
+      .then((r) => setData(r.data.data))
       .finally(() => setLoading(false));
-  }, [q, sort, pageNum]);
+  }, [q, sort, page]);
 
   const update = (patch) => {
     const next = new URLSearchParams(params);
@@ -74,35 +66,31 @@ export default function Destinations() {
 
         {loading ? (
           <LoadingSpinner />
-        ) : error ? (
-          <EmptyState icon="⚠️" title={error} message="Please try again." />
-        ) : page.content.length === 0 ? (
-          <EmptyState
-            icon="🌍"
-            title="No destinations found"
-            message="Try a different search."
-          />
+        ) : data?.content?.length === 0 ? (
+          <EmptyState icon="🌍" title="No destinations found" message="Try a different search." />
         ) : (
           <>
             <div className="destinations-grid">
-              {page.content.map((d) => (
+              {data.content.map((d) => (
                 <article className="destination-page-card" key={d.id}>
                   <div className="destination-page-image">
-                    <img src={d.imageUrl} alt={d.name} loading="lazy" />
+                    <img src={d.imageUrl} alt={d.name} />
                   </div>
                   <div className="destination-page-info">
                     <span>{d.country}</span>
                     <h2>{d.name}</h2>
                     <p>{d.description}</p>
-                    <Link to={`/destinations/${d.id}`}>Explore Destination →</Link>
+                    <Link to={`/destinations/${d.id}`}>
+                      Explore Destination →
+                    </Link>
                   </div>
                 </article>
               ))}
             </div>
 
             <Pagination
-              page={pageNum}
-              totalPages={page.totalPages}
+              page={page}
+              totalPages={data.totalPages}
               onPageChange={(p) => update({ page: p })}
             />
           </>

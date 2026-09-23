@@ -2,54 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* =========================================================
+   Design tokens (Sharvesh-inspired)
+   ========================================================= */
+:root {
+  --brand-navy: #102f45;
+  --brand-gold: #e2b96f;
+  --brand-sky: #0ea5e9;
+  --brand-sky-dark: #0369a1;
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --page-max: 1300px;
 }
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  overflow-x: hidden;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
-  color: #222222;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-
-
-/*================================*/
 
 @layer base {
   html { scroll-behavior: smooth; }
   body {
     @apply font-sans text-gray-800 bg-white antialiased;
   }
+}
+
+/* Global app shell */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
 }
 
 @layer components {
@@ -67,7 +47,8 @@ select {
            text-white font-medium px-4 py-2 rounded-lg transition;
   }
   .card {
-    @apply bg-white rounded-xl shadow-card border border-gray-100;
+    @apply bg-white rounded-xl border border-gray-100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
   .input {
     @apply w-full border border-gray-300 rounded-lg px-3 py-2
@@ -88,7 +69,6 @@ select {
   }
 }
 
-/* Hide number input spinners in filter inputs */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;

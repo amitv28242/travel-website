@@ -13,7 +13,9 @@ export default function DestinationCard({ destination: d }) {
         />
       </div>
       <div className="p-5">
-        <h3 className="text-lg font-semibold">{d.name}, {d.country}</h3>
+        <h3 className="text-lg font-semibold">
+          {d.name}, {d.country}
+        </h3>
         <p className="text-sm text-gray-600 mt-1 line-clamp-2">{d.description}</p>
         <div className="mt-3 flex items-center justify-between">
           <p className="text-primary font-semibold">
