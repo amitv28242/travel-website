@@ -197,6 +197,7 @@ npm run preview
 ---
 
 ## 🗺 Route Map
+```
 Path	Page	Access
 /	Home	Public
 /destinations	Destinations list	Public
@@ -216,9 +217,10 @@ Path	Page	Access
 /admin/reviews	Review moderation	ADMIN
 /404	Not found	Public
 *	Redirects to /404	Public
+```
 
+### Testing the App
 
-Testing the App
 Start the backend on http://localhost:8080
 
 Start the frontend on http://localhost:5173
