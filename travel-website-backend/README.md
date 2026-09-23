@@ -177,50 +177,63 @@ java -jar target/travel-website-backend-1.0.0.jar
 ```
 
 🌐 API Overview
-Base URL: http://localhost:8080/api
 
+```
+Base URL: http://localhost:8080/api
+```
 Authentication
+```
 Method	Endpoint	Access	Description
 POST	/auth/register	Public	Register a new user
 POST	/auth/login	Public	Login and receive a JWT
-
+```
 User Profile
+```
 Method	Endpoint	Access	Description
 GET	/users/profile	USER	Get current profile
 PUT	/users/profile	USER	Update name & phone
 PUT	/users/change-password	USER	Change password
+```
 
 Destinations
+```
 Method	Endpoint	Access	Description
 GET	/destinations	Public	Paginated list (?q=&sort=&page=&size=)
 GET	/destinations/{id}	Public	Single destination
 POST	/destinations	ADMIN	Create
 PUT	/destinations/{id}	ADMIN	Update
 DELETE	/destinations/{id}	ADMIN	Delete
+```
 
 Packages
+```
 Method	Endpoint	Access	Description
 GET	/packages	Public	Filters: destination, minPrice, maxPrice, duration, minRating, sort, page, size
 GET	/packages/{id}	Public	Single package with itineraries
 POST	/packages	ADMIN	Create (with itineraries)
 PUT	/packages/{id}	ADMIN	Update (with itineraries)
 DELETE	/packages/{id}	ADMIN	Delete
+```
 
 Bookings (User)
+
+```
 Method	Endpoint	Access	Description
 POST	/bookings	USER	Create booking with traveller details
 GET	/bookings	USER	List current user's bookings
 GET	/bookings/{id}	USER	Booking detail
 PUT	/bookings/{id}/cancel	USER	Cancel (48h before travel)
-
+```
 Reviews
+```
 Method	Endpoint	Access	Description
 GET	/reviews	Public	Filters: packageId, destinationId, status, page, size
 POST	/reviews	USER	Submit review (goes to PENDING)
 PUT	/reviews/{id}/moderate?status=	ADMIN	Approve / Hide
 DELETE	/reviews/{id}	ADMIN	Delete
-
+```
 Admin
+```
 Method	Endpoint	Access	Description
 GET	/admin/stats	ADMIN	Dashboard aggregates
 GET	/admin/users	ADMIN	Search/filter users
@@ -231,9 +244,10 @@ GET	/admin/bookings	ADMIN	Search/filter bookings
 GET	/admin/bookings/{id}	ADMIN	Booking detail
 PUT	/admin/bookings/{id}/status?status=	ADMIN	Update booking status
 PUT	/admin/bookings/{id}/cancel?reason=	ADMIN	Admin cancel
+```
 
-
-📖 API Documentation (Swagger)
+###📖 API Documentation (Swagger)
+```
 Once the app is running, open:
 
 Swagger UI: http://localhost:8080/swagger-ui.html
@@ -250,4 +264,4 @@ Click Authorize in the Swagger UI.
 Paste the token (the "Bearer " prefix is added automatically).
 
 All subsequent requests carry the JWT.
-
+```
