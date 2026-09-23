@@ -109,10 +109,12 @@ cd travel-website-backend
 
 ```
 ### Configure env (copy and edit)
+```bash
 cp .env.example .env
 ```
 
 # Build and run
+```bash
 mvn clean install -DskipTests
 mvn spring-boot:run
 ```
