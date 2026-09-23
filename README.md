@@ -96,35 +96,36 @@ Admins additionally can:
 ## ⚡ Quick Start (Backend first, then Frontend)
 ---
 ### Step 1 — Start MySQL
-
+```bash
 Ensure MySQL is running and reachable at `localhost:3306`.
 
 mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS travel_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-
+```
 ---
 
 ### Step 2 — Run the Backend
 ```bash
 cd travel-website-backend
 
+```
 # Configure env (copy and edit)
 cp .env.example .env
+```
 
 # Build and run
 mvn clean install -DskipTests
 mvn spring-boot:run
-
+```
 ---
 
 ### Step 3 — Run the Frontend
 
 ```bash
 cd travel-website-frontend
-
 npm install
 cp .env.example .env     # ensures VITE_API_URL=http://localhost:8080/api
 npm run dev
-
+```
 ---
 
 The frontend starts on http://localhost:5173.
