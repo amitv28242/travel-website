@@ -108,7 +108,7 @@ mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS travel_db CHARACTER SET utf8m
 cd travel-website-backend
 
 ```
-# Configure env (copy and edit)
+### Configure env (copy and edit)
 cp .env.example .env
 ```
 
