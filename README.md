@@ -94,12 +94,11 @@ Admins additionally can:
 ---
 
 ## ⚡ Quick Start (Backend first, then Frontend)
-
+---
 ### Step 1 — Start MySQL
 
 Ensure MySQL is running and reachable at `localhost:3306`.
 
-```bash
 mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS travel_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
 ---
