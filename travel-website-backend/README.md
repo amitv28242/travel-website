@@ -1,8 +1,8 @@
-# TravelGo — Backend API
+# SHARVESH OURS & TRAVELS — Backend API
 
 > Spring Boot 3.2 · Java 21 · MySQL 8 · JWT · Spring Security · JPA/Hibernate · Swagger
 
-RESTful backend for the **TravelGo** travel & tour booking platform. Provides
+RESTful backend for the **SHARVESH OURS & TRAVELS** travel & tour booking platform. Provides
 JWT-based authentication, destination/package management, booking flow with
 traveller details, reviews with moderation, and a full admin panel.
 
@@ -52,7 +52,7 @@ traveller details, reviews with moderation, and a full admin panel.
 ---
 
 ## 🧰 Tech Stack
-
+```
 | Layer | Technology |
 |---|---|
 | Language | Java 21 |
@@ -66,17 +66,18 @@ traveller details, reviews with moderation, and a full admin panel.
 | Documentation | springdoc-openapi (Swagger UI) |
 | Utilities | Lombok, Jackson (JSR-310) |
 | Password Hashing | BCrypt |
-
+```
 ---
 
 ## 🖥 System Requirements
-
+```
 | Tool | Version | Notes |
 |---|---|---|
 | Java | **21+** | Required (`java -version`) |
 | Maven | 3.9+ | Or use the wrapper `./mvnw` |
 | MySQL | 8.0+ | Must be running locally or remotely |
 | Git | Any | For cloning the repo |
+```
 
 Optional:
 - **Postman** / **Insomnia** — for manual testing
@@ -86,7 +87,7 @@ Optional:
 
 ## 📁 Project Structure
 
-
+```
 travel-website-backend/
 ├── pom.xml
 ├── .env.example
@@ -111,7 +112,7 @@ travel-website-backend/
 └── test/java/com/travelapp/
 └── TravelApplicationTests.java
 
-
+```
 
 ---
 
@@ -122,6 +123,7 @@ travel-website-backend/
 ```bash
 git clone https://github.com/amitv28242/travel-website.git/travel-website-backend.git
 cd travel-website-backend
+```
 
 2. Verify prerequisites
 
@@ -129,28 +131,34 @@ cd travel-website-backend
 java -version     # must print 21 or higher
 mvn -v            # must print 3.9+
 mysql --version   # must print 8.x
+```
 
 3. Create the database (or let Hibernate do it)
 
 ```bash
 mysql -u root -p -e "CREATE DATABASE travel_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
+```
 
 4. Configure environment variables
 
 ```bash
 cp .env.example .env
 # Edit .env with your MySQL credentials + a strong JWT secret
+```
+
 5. Build the project
 
 ```bash
 mvn clean install -DskipTests
+```
 
 6. Run
 
 ```bash
 mvn spring-boot:run
 The API will start on http://localhost:8080
+```
 
 
 Build a jar and run it
@@ -159,13 +167,14 @@ Development
 
 ```bash
 mvn spring-boot:run
-
+```
 
 Packaged jar
 
 ```bash
 mvn clean package -DskipTests
 java -jar target/travel-website-backend-1.0.0.jar
+```
 
 🌐 API Overview
 Base URL: http://localhost:8080/api
