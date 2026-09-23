@@ -1,0 +1,140 @@
+.travel-cta {
+  position: relative;
+
+  min-height: 460px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image:
+    url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2000&q=85");
+
+  background-size: cover;
+  background-position: center;
+
+  overflow: hidden;
+}
+
+.travel-cta-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 31, 45, 0.85),
+      rgba(10, 31, 45, 0.58)
+    );
+}
+
+.travel-cta-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 750px;
+
+  padding: 60px 25px;
+
+  text-align: center;
+
+  color: white;
+}
+
+.travel-cta-label {
+  margin-bottom: 18px;
+
+  color: #e2b96f;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.travel-cta-content h2 {
+  margin: 0;
+
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.1;
+}
+
+.travel-cta-content h2 span {
+  color: #e2b96f;
+}
+
+.travel-cta-content > p {
+  max-width: 600px;
+
+  margin: 22px auto 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.travel-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+
+  margin-top: 32px;
+}
+
+.cta-primary,
+.cta-secondary {
+  padding: 14px 26px;
+
+  border-radius: 30px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.cta-primary {
+  border: 2px solid #e2b96f;
+
+  background: #e2b96f;
+  color: #173f5f;
+}
+
+.cta-primary:hover {
+  background: white;
+  border-color: white;
+
+  transform: translateY(-3px);
+}
+
+.cta-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+
+  background: transparent;
+  color: white;
+}
+
+.cta-secondary:hover {
+  background: white;
+  color: #173f5f;
+
+  transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+  .travel-cta {
+    min-height: 500px;
+  }
+
+  .travel-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: 220px;
+  }
+}
