@@ -100,6 +100,7 @@ Optional:
 ---
 
 ## 📁 Project Structure
+```
 travel-website-frontend/
 ├── index.html
 ├── package.json
@@ -161,6 +162,7 @@ travel-website-frontend/
 ├── AdminPackages.jsx
 ├── AdminBookings.jsx
 └── AdminReviews.jsx
+```
 ---
 
 ## Running the Application
